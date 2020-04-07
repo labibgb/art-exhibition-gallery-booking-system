@@ -7,18 +7,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Art Gallery Exhibition Booking System</title>
-
+    <title>Art Yard</title>
+    <!--Icons-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
     <link href="{% static 'css/small-business.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
 </head>
 <body>
     <!--Navigation Bar-->
     {% include 'partials/_navbar.html' %}
-
     <!--Main content-->
     {% block content %}
     {% endblock %}
