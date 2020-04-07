@@ -6,9 +6,6 @@
 body {
   padding-top: 56px;
 }
-.bg-custom{
-  background-color: lightcoral !important;
-}
-.border-custom-color{
-  color: chocolate;
+.bg-info{
+  background-color: #715836e6!important;
 }

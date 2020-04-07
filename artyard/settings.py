@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'galleries.apps.GalleriesConfig',
+    'booking.apps.BookingConfig',
+    'user.apps.UserConfig',
+    'payment.apps.PaymentConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,5 +127,9 @@ USE_TZ = True
 STATIC_ROOT = os.path.join( BASE_DIR , 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR , 'booking/static')
+    os.path.join(BASE_DIR , 'artyard/static')
 ]
+
+# Media folder Settings
+MEDIA_ROOT = os.path.join( BASE_DIR , 'media')
+MEDIA_URL = '/media/'
