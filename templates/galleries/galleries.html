@@ -1,67 +1,71 @@
 {% extends 'base.html'%}
+{% load humanize %}
 {% block content %}
 <div class="container my-5">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Galleries</li>
+          <li class="breadcrumb-item active" aria-current="page">Browse Galleries</li>
         </ol>
     </nav>
     <div class="row">
-        <div class="col-md-4 mb-5">
+      {% if galleries %}
+        {% for gallery in galleries %}
+        <div class="card-group col-md-4 mb-5">
           <div class="card h-100">
+            <div class="card-header card-title bg-transparent border-success"><h3 class="card-title text-info text-center ">{{ gallery.nameUpper }}</h3></div>
             <div class="card-body">
-              <h2 class="card-title">Card One</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+              <h5 class="card-title ">{{ gallery.location.location }}</h5>
+              <p class="card-text">{{ gallery.shortdesc }}....</p>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-outline-info btn-sm mr-2">More Info</a>
+                <a href="{% url 'gallery' gallery.id %}" class="btn btn-outline-info btn-sm mr-2">More Info</a>
                 <a href="#" class="btn btn-outline-danger btn-sm">Book Now</a>
             </div>
           </div>
         </div>
-        <!-- /.col-md-4 -->
-        <div class="col-md-4 mb-5">
-          <div class="card h-100">
-            <div class="card-body">
-              <h2 class="card-title">Card Two</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
-            </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-outline-info btn-sm mr-2">More Info</a>
-                <a href="#" class="btn btn-outline-danger btn-sm">Book Now</a>
-            </div>
-          </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-md-12 mb-5">
+          <p>No Galleries Available</p>
         </div>
-        <!-- /.col-md-4 -->
-        <div class="col-md-4 mb-5">
-          <div class="card h-100">
-            <div class="card-body">
-              <h2 class="card-title">Card Three</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-            </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-outline-info btn-sm mr-2">More Info</a>
-                <a href="#" class="btn btn-outline-danger btn-sm">Book Now</a>
-            </div>
-          </div>
-        </div>
-        <!-- /.col-md-4 -->
-         <!-- /.col-md-4 -->
-         <div class="col-md-4 mb-5">
-            <div class="card h-100">
-              <div class="card-body">
-                <h2 class="card-title">Card Four</h2>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-              </div>
-              <div class="card-footer">
-                <a href="#" class="btn btn-outline-info btn-sm mr-2">More Info</a>
-                <a href="#" class="btn btn-outline-danger btn-sm">Book Now</a>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-4 -->
+      {% endif %}
   
-      </div>
+    </div>
+    <nav aria-label="...">
+      {% if galleries.has_other_pages %} 
+        <ul class="pagination">
+          {% if galleries.has_previous %}
+            <li class="page-item">
+              <a href="?page={{galleries.previous_page_number}}" class="page-link">Previous</a>
+            </li>
+          {% else %}
+              <li class="page-item disable">
+                <a class="page-link">Previous</a>
+              </li>
+          {% endif %}
+          {% for i in galleries.paginator.page_range %}
+              {% if galleries.number == i %}
+                <li class="page-item active">
+                  <a class="page-link">{{i}}</a>
+                </li>
+              {% else %}
+                <li class="page-item">
+                  <a href="?page={{i}}" class="page-link">{{i}}</a>
+                </li>
+              {% endif %}
+          {% endfor %}
+          {% if galleries.has_next %}
+            <li class="page-item">
+              <a href="?page={{galleries.next_page_number}}" class="page-link">Next</a>
+            </li>
+          {% else %}
+              <li class="page-item disable">
+                <a class="page-link">Next</a>
+              </li>
+          {% endif %}
+        </ul>
+      {% endif %}
+    </nav>
 </div>
 {% endblock %}
