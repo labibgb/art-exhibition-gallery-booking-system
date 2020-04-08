@@ -22,6 +22,10 @@ class Gallery( models.Model ):
 
     def __str__( self ):
         return self.name
+    def shortdesc( self ):
+        return self.description[ :150 ]
+    def nameUpper( self ):
+        return self.name.upper()
 
 class ServiceList( models.Model ):
     serviceName = models.CharField( max_length=20 , blank=True )
