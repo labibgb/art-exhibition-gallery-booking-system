@@ -3,5 +3,6 @@ A web based art gallery booking sytem.
 # Tools
     * Framework
         - Django 3.0.5
-    * Database
-        - Postgrysql
+        - Bootstrap 4.0
+     *Database
+        - deaPostgrysql
