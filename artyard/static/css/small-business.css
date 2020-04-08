@@ -3,9 +3,7 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-small-business/blob/master/LICENSE)
  */
-body {
-  padding-top: 56px;
-}
-.bg-info{
-  background-color: #715836e6!important;
+.cover-img{
+    max-width: 100%;
+    max-height: 10px;  
 }
