@@ -9,66 +9,38 @@
             <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'img/cover.jpg' %}" alt="">
     </div>
     <div class="row align-items-center my-5">
-        <div class="card-body border-bottom border-info">
-            <h1 class="text-center text-info  m-0">Galleries</h1>
+        <div class="card-body card-header border-custom">
+            <h1 class="text-center text-custom m-0">Galleries In Our List</h1>
         </div>
     </div>
     <!-- Gallries card -->
     <div class="row">
-        <div class="col-md-4 mb-5">
-          <div class="card h-100">
-            <div class="card-body">
-              <h2 class="card-title">Card One</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-            </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-outline-info btn-sm mr-2">More Info</a>
-                <a href="#" class="btn btn-outline-danger btn-sm">Book Now</a>
-            </div>
-          </div>
-        </div>
-        <!-- /.col-md-4 -->
-        <div class="col-md-4 mb-5">
-          <div class="card h-100">
-            <div class="card-body">
-              <h2 class="card-title">Card Two</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
-            </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-outline-info btn-sm mr-2">More Info</a>
-                <a href="#" class="btn btn-outline-danger btn-sm">Book Now</a>
-            </div>
-          </div>
-        </div>
-        <!-- /.col-md-4 -->
-        <div class="col-md-4 mb-5">
-          <div class="card h-100">
-            <div class="card-body">
-              <h2 class="card-title">Card Three</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-            </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-outline-info btn-sm mr-2">More Info</a>
-                <a href="#" class="btn btn-outline-danger btn-sm">Book Now</a>
-            </div>
-          </div>
-        </div>
-        <!-- /.col-md-4 -->
-         <!-- /.col-md-4 -->
-         <div class="col-md-4 mb-5">
+      {% if galleries %}
+        {% for gallery in galleries %}
+          <div class="card-group col-md-4 mb-5">
             <div class="card h-100">
+              <div class="card-header card-title bg-transparent border-custom"><h3 class="card-title text-custom text-center ">{{ gallery.nameUpper }}</h3></div>
               <div class="card-body">
-                <h2 class="card-title">Card Four</h2>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                <h5 class="card-title text-custom">{{ gallery.location.location }}</h5>
+                <p class="card-text text-custom">{{ gallery.shortdesc }}</p>
               </div>
               <div class="card-footer">
-                <a href="#" class="btn btn-outline-info btn-sm mr-2">More Info</a>
-                <a href="#" class="btn btn-outline-danger btn-sm">Book Now</a>
+                  <a href="{% url 'gallery' gallery.id %}" class="btn btn-outline-info btn-sm mr-2">More Info</a>
+                  {% if gallery.is_available %}
+                  <a href="#" class="btn btn-outline-success btn-sm">Book Now</a>
+                  {% else %}
+                  <a class="btn btn-outline-danger btn-sm disable">Book Now</a>
+                  {% endif %}
               </div>
             </div>
           </div>
-          <!-- /.col-md-4 -->
+        {% endfor %}
+      {% else %}
+        <div class="col-md-12 mb-5">
+          <h1 class="text-center text-danger m-0 my-5">No Galleries Available</h1>
+        </div>
+      {% endif %}
   
-      </div>
+    </div>
 </div>
 {% endblock %}

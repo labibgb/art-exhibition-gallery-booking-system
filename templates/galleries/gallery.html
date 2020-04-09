@@ -1,39 +1,103 @@
 {% extends 'base.html'%}
 {% load humanize %}
 {% load static %}
-{% block content %}
 
+{% block content %}
 <div class="container my-5">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
           <li class="breadcrumb-item"><a href="{% url 'galleries' %}">Galleries</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Test</li>
+          {% for gallery in gallery %}
+            <li class="breadcrumb-item active" aria-current="page">{{gallery.name}}</li>
+          {% endfor %}
         </ol>
     </nav>
     <div class="row">
-      {% if galleries %}
-        {% for gallery in galleries %}
-        <div class="card-group col-md-4 mb-5">
-          <div class="card h-100">
-            <div class="card-header card-title bg-transparent border-success"><h3 class="card-title text-info text-center ">{{ gallery.nameUpper }}</h3></div>
-            <div class="card-body">
-              <h5 class="card-title ">{{ gallery.location.location }}</h5>
-              <p class="card-text">{{ gallery.shortdesc }}....</p>
+      {% if gallery %}
+        {% for gallery in gallery %}
+        <div class="container col-md-8 mb-5">
+            <div class="card-header card-title bg-transparent border-dark"><h3 class="card-title text-custom text-center ">{{ gallery.nameUpper }}</h3></div>
+            <div class="alert alert-dark">
+              <h5 class="alert-heading">Location</h5>
+              <p>{{gallery.location}}</p>
             </div>
-            <div class="card-footer">
-                <a href="{% url 'gallery' gallery.id %}" class="btn btn-outline-info btn-sm mr-2">More Info</a>
-                <a href="#" class="btn btn-outline-danger btn-sm">Book Now</a>
+            <div class="alert alert-dark">
+              <h5 class="alert-heading">About {{gallery.name}}</h5>
+              <p class="card-text">{{ gallery.description }}</p>
             </div>
-          </div>
+            <div class="btn btn-block">
+              {% if gallery.is_available %}
+              <a href="#" class="btn btn-outline-success btn-lg ">Book Now</a>
+              {% else %}
+              <a class="btn btn-outline-danger btn-lg disable">Not Available</a>
+              {% endif %}
+            </div>
         </div>
         {% endfor %}
-      {% else %}
-        <div class="col-md-12 mb-5">
-          <p>No Galleries Available</p>
-        </div>
       {% endif %}
-  
     </div>
+
+        <!-- Grid row -->
+<!-- Grid row -->
+  <div class="row align-items-center my-5">
+    <div class="card-body card-header border-custom">
+        <h1 class="text-center text-custom m-0">Recent Event Photos</h1>
+    </div>
+  </div>
+  <div class="gallery">
+    {% if gallery %}
+      {% for gallery in gallery %}
+      <!-- Grid column -->
+      <div class="mb-3 pics">
+        {% if gallery.img_1%}
+        <img class="img-fluid" src="{{gallery.img_1.url}}" alt="Card image cap">
+        {% endif %}
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="mb-3 pics ">
+        {% if gallery.img_2%}
+        <img class="img-fluid" src="{{gallery.img_2.url}}" alt="Card image cap">
+        {% endif %}
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="mb-3 pics ">
+        {% if gallery.img_3%}
+        <img class="img-fluid" src="{{gallery.img_3.url}}" alt="Card image cap">
+        {% endif %}
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="mb-3 pics ">
+        {% if gallery.img_4%}
+        <img class="img-fluid" src="{{gallery.img_4.url}}" alt="Card image cap">
+        {% endif %}
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="mb-3 pics ">
+        {% if gallery.img_5%}
+        <img class="img-fluid" src="{{gallery.img_5.url}}" alt="Card image cap">
+        {% endif %}
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="mb-3 pics ">
+        {% if gallery.img_6%}
+        <img class="img-fluid" src="{{gallery.img_6.url}}" alt="Card image cap">
+        {% endif %}
+      </div>
+      <!-- Grid column -->
+      {% endfor %}
+    {% endif %}
+  </div>
+  
 </div>
 {% endblock %}
