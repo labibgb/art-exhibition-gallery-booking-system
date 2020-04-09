@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'artyard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'artyarddb',
+        'NAME': 'artyard',
         'USER': 'postgres',
         'PASSWORD': 'labib',
         'HOST': 'localhost'
@@ -134,3 +134,9 @@ STATICFILES_DIRS = [
 # Media folder Settings
 MEDIA_ROOT = os.path.join( BASE_DIR , 'media')
 MEDIA_URL = '/media/'
+
+#Django Messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}

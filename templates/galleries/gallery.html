@@ -52,6 +52,8 @@
       <div class="mb-3 pics">
         {% if gallery.img_1%}
         <img class="img-fluid" src="{{gallery.img_1.url}}" alt="Card image cap">
+        {% else %}
+        <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
         {% endif %}
       </div>
       <!-- Grid column -->
@@ -60,6 +62,8 @@
       <div class="mb-3 pics ">
         {% if gallery.img_2%}
         <img class="img-fluid" src="{{gallery.img_2.url}}" alt="Card image cap">
+        {% else %}
+        <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
         {% endif %}
       </div>
       <!-- Grid column -->
@@ -68,6 +72,8 @@
       <div class="mb-3 pics ">
         {% if gallery.img_3%}
         <img class="img-fluid" src="{{gallery.img_3.url}}" alt="Card image cap">
+        {% else %}
+        <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
         {% endif %}
       </div>
       <!-- Grid column -->
@@ -76,6 +82,8 @@
       <div class="mb-3 pics ">
         {% if gallery.img_4%}
         <img class="img-fluid" src="{{gallery.img_4.url}}" alt="Card image cap">
+        {% else %}
+        <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
         {% endif %}
       </div>
       <!-- Grid column -->
@@ -84,6 +92,8 @@
       <div class="mb-3 pics ">
         {% if gallery.img_5%}
         <img class="img-fluid" src="{{gallery.img_5.url}}" alt="Card image cap">
+        {% else %}
+        <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
         {% endif %}
       </div>
       <!-- Grid column -->
@@ -92,6 +102,8 @@
       <div class="mb-3 pics ">
         {% if gallery.img_6%}
         <img class="img-fluid" src="{{gallery.img_6.url}}" alt="Card image cap">
+        {% else %}
+        <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
         {% endif %}
       </div>
       <!-- Grid column -->
