@@ -1,0 +1,35 @@
+body {
+    padding-top: 56px;
+ }
+  
+.gallery {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    -webkit-column-width: 33%;
+    -moz-column-width: 33%;
+    column-width: 33%; 
+}
+.gallery .pics {
+        -webkit-transition: all 350ms ease;
+        transition: all 350ms ease; 
+}
+.bg-custom {
+    background-color: #754519 !important;
+}
+.border-custom{
+    border-color: #a2550e!important;
+}
+.text-custom{
+    color: #a2550e !important;
+}
+.btn-outline-custom {
+    color: #a2550e;
+    border-color: #a2550e;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #a2550e;
+    border-color: #a2550e;
+}
