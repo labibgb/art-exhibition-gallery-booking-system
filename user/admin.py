@@ -1,3 +1,50 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
 from .models import InfoTable
-admin.site.register( InfoTable )
+from .forms import UserAdminCreationForm, UserAdminChangeForm
+from django.contrib.auth.models import Group
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+User = get_user_model()
+
+class userAdmin( admin.ModelAdmin ):
+    search_fields = ( 'email' , )
+    list_display = ( 'id' , 'email' , 'admin' , 'staff' , 'active')
+    form = UserAdminChangeForm
+    add_form = UserAdminCreationForm
+    # The fields to be used in displaying the User model.
+    # These override the definitions on the base UserAdmin
+    # that reference specific fields on auth.User.
+    list_display = ('email', 'admin')
+    list_filter = ('admin', 'staff')
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Personal info', {'fields': ()}),
+        ('Permissions', {'fields': ('admin',)}),
+    )
+    # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
+    # overrides get_fieldsets to use this attribute when creating a user.
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2')}
+        ),
+    )
+    search_fields = ('email',)
+    ordering = ('email',)
+    filter_horizontal = ()
+class infoAdmin( admin.ModelAdmin ):
+
+    form = UserAdminChangeForm
+    add_form = UserAdminCreationForm
+    search_fields = ( 'email' , )
+    list_display = ( 'id' , 'name', 'email' , 'phone' , 'address' , 'active')
+    fieldsets = (
+        ('User Info', {'fields': ( 'name' , 'phone' , 'address', 'active' )}),
+    )
+    list_filter = ( 'active' , )
+    list_display_links = ( 'id', 'name', )
+    list_per_page = 20
+   
+
+admin.site.register( User , userAdmin )
+admin.site.register( InfoTable, infoAdmin )

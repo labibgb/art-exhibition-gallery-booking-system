@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+AUTH_USER_MODEL = 'user.User' #change the built in user model
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'galleries.apps.GalleriesConfig',
