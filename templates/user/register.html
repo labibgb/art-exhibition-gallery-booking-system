@@ -9,35 +9,36 @@
             <h5 class="card-title text-center">Register</h5>
             <!-- Alers -->
             {% include 'partials/_alert.html' %}
-            <form class="form-signin" action="{% url 'register' %}" method="POST">
+            <form class="form-signin" method="POST">
                 {% csrf_token %}
-              <div class="form-label-group">
-                <input type="text" name="fname" id="inputName" class="form-control" placeholder="Full Name" required autofocus>
-                <label for="inputName">Full Name</label>
-              </div>
-              <div class="form-label-group">
-                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required>
-                <label for="inputEmail">Email address</label>
-              </div>
-              <div class="form-label-group">
-                <input type="text" name="phone" id="inputPhone" class="form-control" placeholder="Phone" required autofocus>
-                <label for="inputPhone">Phone</label>
-              </div>
-              <div class="form-label-group">
-                <input type="text" name="address" id="inputAddress" class="form-control" placeholder="Address" required autofocus>
-                <label for="inputAddress">Address</label>
-              </div>
-              <hr>
-              <div class="form-label-group">
-                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <label for="inputPassword">Password</label>
-              </div>
-              
-              <div class="form-label-group">
-                <input type="password" name="confirmPassword" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" required>
-                <label for="inputConfirmPassword">Confirm password</label>
-              </div>
-
+                <div class="form-label-group">
+                  {{form.username}}
+                  <label for="username">username</label>
+                </div>
+                <div class="form-label-group">
+                  {{form.email}}
+                  <label for="email">Email</label>
+                </div>
+                <div class="form-label-group">
+                  {{form.name}}
+                  <label for="name">Name</label>
+                </div>
+                <div class="form-label-group">
+                  {{form.phone}}
+                  <label for="phone">Phone</label>
+                </div>
+                <div class="form-label-group">
+                  {{form.address}}
+                  <label for="addres">Address</label>
+                </div>
+                <div class="form-label-group">
+                  {{form.password1}}
+                  <label for="password">Password</label>
+                </div> 
+                <div class="form-label-group">
+                  {{form.password2}}
+                  <label for="password2">Confirm Password</label>
+                </div>
               <button class="btn btn-lg btn-outline-info btn-block text-uppercase" type="submit" value="Register">Register</button>
               <a class="d-block text-center mt-2 small" href="{% url 'login' %}">Sign In</a>
               <hr class="my-4">

@@ -1,6 +1,6 @@
 from django.db import models
 from galleries.models import Gallery
-from user.models import InfoTable
+from django.contrib.auth.models import User
 # Create your models here.
 class Rent( models.Model ):
     gallery = models.ForeignKey( Gallery , on_delete=models.DO_NOTHING )
@@ -9,10 +9,10 @@ class Rent( models.Model ):
     def __str__( self ):
         return self.rent
 class Payment( models.Model ):
-    user = models.ForeignKey( InfoTable , on_delete=models.DO_NOTHING )
+    user = models.ForeignKey( User , on_delete=models.DO_NOTHING )
     gallery = models.ForeignKey( Gallery , on_delete=models.DO_NOTHING )
     rent = models.ForeignKey( Rent, on_delete=models.DO_NOTHING )
     is_payment = models.BooleanField(default=False)
     
     def __str__( self ):
-        return self.user.name
+        return self.user.username

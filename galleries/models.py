@@ -1,5 +1,5 @@
 from django.db import models
-from user.models import InfoTable
+from django.contrib.auth.models import User
 class Location( models.Model ):
     
     location = models.CharField( max_length=200 )
@@ -46,7 +46,7 @@ class Services( models.Model ):
 class Feedback( models.Model ):
 
     gallery = models.ForeignKey( Gallery , on_delete=models.DO_NOTHING )
-    userinfo = models.ForeignKey( InfoTable , on_delete=models.DO_NOTHING )
+    userinfo = models.ForeignKey( User , on_delete=models.DO_NOTHING )
     feedback = models.TextField( blank=True )
 
     def __str__( self ):

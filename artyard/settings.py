@@ -29,7 +29,8 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-AUTH_USER_MODEL = 'user.User' #change the built in user model
+#AUTH_USER_MODEL = 'user.User' #change the built in user model
+#AUTHENTICATION_BACKENDS = ('user.backend.MyAuthBackend','django.contrib.auth.backends.ModelBackend',)
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'galleries.apps.GalleriesConfig',
