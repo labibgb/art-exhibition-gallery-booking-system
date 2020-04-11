@@ -12,6 +12,8 @@ class TimeSlot( models.Model ):
     timest = models.TextField( null=True)
     timeed = models.TimeField( null=True)
     
+    def __str__( self ):
+        return str( self.timest ) + ' to ' + str( self.timeed ) 
     def get_time_st( self ):
         return str( self.timest )
 

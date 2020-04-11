@@ -12,6 +12,9 @@
           {% endfor %}
         </ol>
     </nav>
+    <div class="card">
+      <div class="card-body">
+          <div class="tab-pane fade show active text-custom" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
     <div class="row">
       {% if gallery %}
         {% for gallery in gallery %}
@@ -25,6 +28,10 @@
               <h5 class="alert-heading">About {{gallery.name}}</h5>
               <p class="card-text">{{ gallery.description }}</p>
             </div>
+            <div class="alert alert-danger" style="font-weight: 350;font-size: 2.25rem;">
+              <h5 class="alert-heading">Per day rent</h5>
+              <p>{{gallery.rent_per_day}}&#x9f3;</p>
+            </div>
             <div class="btn btn-block">
               {% if gallery.is_available %}
               <button type="button" class="btn btn-outline-info btn-lg" data-toggle="modal" data-target="#myModal">Book Now</button>
@@ -37,15 +44,20 @@
         {% endfor %}
       {% endif %}
     </div>
-
+    </div>
+    </div>
+    </div>
         <!-- Grid row -->
 <!-- Grid row -->
-  <div class="row align-items-center my-5">
+<div class="card my-5">
+  <div class="card-body">
+      <div class="tab-pane fade show active text-custom" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+  <div class="row align-items-center ">
     <div class="card-body card-header border-custom">
-        <h1 class="text-center text-custom m-0">Recent Event Photos</h1>
+        <h1 class="text-center text-custom m-0" style="font-weight: 300;font-size: 2.5rem;">Recent Event Photos</h1>
     </div>
   </div>
-  <div class="gallery">
+  <div class="gallery my-4">
     {% if gallery %}
       {% for gallery in gallery %}
       <!-- Grid column -->
@@ -109,6 +121,9 @@
       <!-- Grid column -->
       {% endfor %}
     {% endif %}
+  </div>
+  </div>
+  </div>
   </div>
 </div>
 {% endblock %}

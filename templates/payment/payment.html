@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="tab-pane fade show active text-custom" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                            
+                <div class="row">
+                    <div class="col-sm-3 col-md-2 col-5">
+                        <label style="font-weight:bold;">Booking ID</label>
+                    </div>
+                    <div class="col-md-8 col-6">
+                        {{booking.id}}
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-3 col-md-2 col-5">
+                        <label style="font-weight:bold;">Gallery Name</label>
+                    </div>
+                    <div class="col-md-8 col-6">
+                        {{booking.gallery.name}}
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-3 col-md-2 col-5">
+                        <label style="font-weight:bold;">Exhibition Type</label>
+                    </div>
+                    <div class="col-md-8 col-6">
+                        {{booking.exebition.exebitionType}}
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-3 col-md-2 col-5">
+                        <label style="font-weight:bold;">Time Slot</label>
+                    </div>
+                    <div class="col-md-8 col-6">
+                        {{booking.TimeSlot}}
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-3 col-md-2 col-5">
+                        <label style="font-weight:bold;">Name</label>
+                    </div>
+                    <div class="col-md-8 col-6">
+                        {{booking.userinfo.profile.name}}
+                    </div>
+                </div>
+                <hr />
+                
+                
+                <div class="row">
+                    <div class="col-sm-3 col-md-2 col-5">
+                        <label style="font-weight:bold;">Booking Date</label>
+                    </div>
+                    <div class="col-md-8 col-6">
+                        {{booking.booking_date}}
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-3 col-md-2 col-5">
+                        <label style="font-weight:bold;">End Date</label>
+                    </div>
+                    <div class="col-md-8 col-6">
+                        {{booking.end_date}}
+                    </div>
+                </div>
+                <hr/>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,21 +1,29 @@
 from django.shortcuts import render, redirect
 from .models import Exebition, TimeSlot, Booking
+from django.contrib.auth.models import User
+from galleries.models import Gallery
 def book( request ):
-    exhibition = Exebition.objects.all()
-    timeslot = TimeSlot.objects.all()
-    context = {
-        'exebition' : exhibition,
-        'timeslot' : timeslot
-    }
     if request.method=='POST':
         userid = request.POST['userid']
         galleryid = request.POST['galleryid']
-        time = request.POST.getlist('time')
-        exhibition = request.POST.getlist('exhibition')
+        time = request.POST['time']
+        exhibition = request.POST['exhibition']
         bookingDate = request.POST['bookingDate']
         endDate = request.POST['endDate']
-        for time in time:
-            user = 
+        makebooking = Booking( booking_date= bookingDate,end_date = endDate)
+        gallery = Gallery.objects.get( pk=galleryid )
+        makebooking.gallery = gallery
+        user = User.objects.get( pk= userid )
+        makebooking.userinfo = user
+        exiname = Exebition.objects.get(pk=exhibition)
+        makebooking.exebition = exiname
+        tslot = TimeSlot.objects.get(pk=time)
+        makebooking.TimeSlot = tslot
+        makebooking.save()
 
-        print( userid , galleryid , time , exhibition , bookingDate , endDate )
-    return render( request , 'partials/booking.html', context )
+        context = {
+            'booking' : makebooking
+        }
+        return render( request , 'payment/payment.html' , context )
+    
+    return redirect( '/' )

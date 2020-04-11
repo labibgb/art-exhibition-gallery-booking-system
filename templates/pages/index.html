@@ -9,16 +9,20 @@
       {% include 'partials/_alert.html' %}
             <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'img/cover.jpg' %}" alt="">
     </div>
-    <div class="row align-items-center my-5">
+    <div class="card my-5">
+      <div class="card-body">
+          <div class="tab-pane fade show active text-custom" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+    <div class="row align-items-center">
         <div class="card-body card-header border-custom">
             <h1  class="text-center text-custom m-0 " style="font-weight: 300;font-size: 2.5rem;">Galleries In Our List</h1>
         </div>
     </div>
+    
     <!-- Gallries card -->
     <div class="row">
       {% if galleries %}
         {% for gallery in galleries %}
-          <div class="card-group col-md-4 mb-5">
+          <div class="card-group col-md-4 mb-5 my-3">
             <div class="card h-100" >
               <div class="card-header card-title bg-transparent border-custom"><h3 class="card-title text-custom text-center " style="font-weight: 300;font-size: 1.5rem;">{{ gallery.name }}</h3></div>
               <div class="card-body" >
@@ -28,9 +32,9 @@
               <div class="card-footer" >
                   <a href="{% url 'gallery' gallery.id %}" class="btn btn-outline-info btn-sm mr-2">More Info</a>
                   {% if gallery.is_available %}
-                  <a href="#" class="btn btn-outline-success btn-sm">Book Now</a>
+                  <a href="{% url 'gallery' gallery.id %}" class="btn btn-outline-success btn-sm">Book Now</a>
                   {% else %}
-                  <a class="btn btn-outline-danger btn-sm disable">Book Now</a>
+                  <a class="btn btn-outline-danger btn-sm disable">Not Available</a>
                   {% endif %}
               </div>
             </div>
@@ -43,15 +47,8 @@
       {% endif %}
   
     </div>
-    <h6 class="card-title text-center">Time Slot</h6>
-    {% if timeslot %}
-    
-      {% for timslot in timeslot %}
-      <div class="custom-control custom-checkbox mb-3">
-        <input type="checkbox" class="custom-control-input" id="{{timslot.id}}">
-        <label class="custom-control-label" for="{{timslot.id}}">{{timslot.get_time_st }}</label>
-      </div>
-    {% endfor %}
-  {% endif %}
+    </div>
+    </div>
+    </div>
 </div>
 {% endblock %}

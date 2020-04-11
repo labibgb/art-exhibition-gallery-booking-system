@@ -7,22 +7,14 @@ def home( request ):
     paginator = Paginator( gallery , 6 )
     page = request.GET.get('page')
     pagr_gallerys = paginator.get_page(page)
-    exhibition = Exebition.objects.order_by('id').all()
-    timeslot = TimeSlot.objects.order_by('id').all()
     context = {
-        'galleries' : pagr_gallerys,
-        'exebition' : exhibition,
-        'timeslot' : timeslot
+        'galleries' : pagr_gallerys
     }
     return render( request , 'galleries/galleries.html', context )
 
 def gallery( request , gallery_id):
     gallery = Gallery.objects.order_by('name').filter(id=gallery_id)
-    exhibition = Exebition.objects.order_by('id').all()
-    timeslot = TimeSlot.objects.order_by('id').all()
     context = {
-        'gallery' : gallery,
-        'exebition' : exhibition,
-        'timeslot' : timeslot
+        'gallery' : gallery
     }
     return render( request , 'galleries/gallery.html' , context)

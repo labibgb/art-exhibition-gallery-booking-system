@@ -21,9 +21,9 @@
             <div class="card-footer" >
                 <a href="{% url 'gallery' gallery.id %}" class="btn btn-outline-info btn-sm mr-2">More Info</a>
                 {% if gallery.is_available %}
-                <a href="#" class="btn btn-outline-success btn-sm">Book Now</a>
+                <a href="{% url 'gallery' gallery.id %}" class="btn btn-outline-success btn-sm">Book Now</a>
                 {% else %}
-                <a class="btn btn-outline-danger btn-sm disable">Book Now</a>
+                <a class="btn btn-outline-danger btn-sm disable">Not Available</a>
                 {% endif %}
             </div>
           </div>

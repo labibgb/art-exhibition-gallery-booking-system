@@ -20,7 +20,7 @@ class Gallery( models.Model ):
     img_6 = models.ImageField(upload_to='photo/%y/%m/%d/',blank=True)
     is_available = models.BooleanField(default=True)
     is_published = models.BooleanField(default=True)
-
+    rent_per_day = models.IntegerField(default=0)
     def __str__( self ):
         return self.name
     def shortdesc( self ):
