@@ -1,7 +1,6 @@
 {% extends 'base.html'%}
 {% load humanize %}
 {% load static %}
-
 {% block content %}
 <div class="container my-5">
     <nav aria-label="breadcrumb">
@@ -17,18 +16,19 @@
       {% if gallery %}
         {% for gallery in gallery %}
         <div class="container col-md-8 mb-5">
-            <div class="card-header card-title bg-transparent border-dark"><h3 class="card-title text-custom text-center ">{{ gallery.nameUpper }}</h3></div>
-            <div class="alert alert-dark">
+            <div class="card-header card-title bg-transparent border-dark"><h3 class="card-title text-custom text-center " style="font-weight: 300;font-size: 2.5rem;">{{ gallery.name }}</h3></div>
+            <div class="alert alert-dark" style="font-weight: 300;font-size: 1.25rem;">
               <h5 class="alert-heading">Location</h5>
               <p>{{gallery.location}}</p>
             </div>
-            <div class="alert alert-dark">
+            <div class="alert alert-dark" style="font-weight: 300;font-size: 1.rem;">
               <h5 class="alert-heading">About {{gallery.name}}</h5>
               <p class="card-text">{{ gallery.description }}</p>
             </div>
             <div class="btn btn-block">
               {% if gallery.is_available %}
-              <a href="#" class="btn btn-outline-success btn-lg ">Book Now</a>
+              <button type="button" class="btn btn-outline-info btn-lg" data-toggle="modal" data-target="#myModal">Book Now</button>
+              {% include 'partials/booking.html' %}
               {% else %}
               <a class="btn btn-outline-danger btn-lg disable">Not Available</a>
               {% endif %}
@@ -110,6 +110,5 @@
       {% endfor %}
     {% endif %}
   </div>
-  
 </div>
 {% endblock %}

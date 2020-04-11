@@ -1,0 +1,88 @@
+<!-- Modal -->
+{% load static %}
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <div class="card-body"></div>
+                    <h5 class="card-title text-center">Book Now</h5>
+                    {% if user.is_authenticated %}
+                    <form class="form-signin" action="{% url 'booking' %}" method="POST" >
+                        {% csrf_token %}
+                        <input type="text" name="userid" value="{{user.id}}" hidden>
+                        <input type="text" name="galleryid" value="{{gallery.id}}" hidden>
+                        <div class="form-label-group">
+                            <input type="text" name ="gallery" id="gallery" class="form-control" placeholder="Gallery" value="{{ gallery.name }}" disabled >
+                            <label for="gallery">Gallery</label>
+                          </div>
+                          <div class="form-label-group">
+                            <input type="text" name ="name" id="name" class="form-control" placeholder="Name" value="{{ user.profile.name}}"disabled>
+                            <label for="name">Name</label>
+                          </div>
+                          <hr class="my-4">
+                          <div class="form-label-group">
+                            <input type="date" name ="bookingDate" id="bookingDate" class="form-control" placeholder="Booking date" >
+                            <label for="bookingDate">Booking date</label>
+                          </div>
+                          <div class="form-label-group">
+                            <input type="date" name ="endDate" id="endDate" class="form-control" placeholder="End date">
+                            <label for="endDate">End date</label>
+                          </div>
+                          <hr class="my-4">
+                          <!--<h6 class="card-title text-center">Time Slot</h6>-->
+                          <h6 class="card-title text-center">Time Slot</h6>
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" name="time" class="custom-control-input" id="1" value="1">
+                                <label class="custom-control-label" for="1"> 9 AM to 12 PM </label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" name="time" class="custom-control-input" id="2" value="2">
+                                <label class="custom-control-label" for="2"> 2 PM to 5 PM </label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" name="time" class="custom-control-input" id="3" value="3">
+                                <label class="custom-control-label" for="3"> 6 PM to 9 PM </label>
+                            </div>
+                          <hr class="my-4">
+                          <h6 class="card-title text-center">Select Exhibition</h6>
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" name="exhibition" class="custom-control-input" id="e1" value="1">
+                                <label class="custom-control-label" for="e1">Photography</label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-3">
+                              <input type="checkbox" name="exhibition"  class="custom-control-input" id="e2" value="2">
+                              <label class="custom-control-label" for="e2">Sculpture</label>
+                          </div>
+                          <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" name="exhibition"  class="custom-control-input" id="e3" value="3">
+                            <label class="custom-control-label" for="e3">Painting</label>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-3">
+                          <input type="checkbox" name="exhibition"  class="custom-control-input" id="e4" value="4">
+                          <label class="custom-control-label" for="e4">Multimedia</label>
+                      </div>
+                          
+                        <div class="modal-footer"></div>
+                            <button class="btn btn-lg btn-outline-info btn-block text-uppercase" type="submit" value="submit">Confirm</button>
+                            <hr class="my-4">
+                        </div>
+                    </form>
+                    
+                    {% else %}
+                    <div class="container">
+                            <div class="alert alert-{{ message.tags }} text-center alert-danger" role="alert">
+                            Please login first
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

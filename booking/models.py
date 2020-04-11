@@ -9,9 +9,15 @@ class Exebition( models.Model ):
     def __str__( self ):
         return self.exebitionType
 class TimeSlot( models.Model ):
-    slot = models.IntegerField(default=0, null=True )
-    time = models.TimeField(auto_now=True)
+    timest = models.TextField( null=True)
+    timeed = models.TimeField( null=True)
     
+    def get_time_st( self ):
+        return str( self.timest )
+
+    def get_time_ed( self ):
+        return str( self.timeed )
+
 class Booking( models.Model ):
 
     gallery = models.ForeignKey( Gallery , on_delete = models.DO_NOTHING )

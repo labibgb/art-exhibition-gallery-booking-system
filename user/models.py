@@ -9,10 +9,11 @@ class Profile(models.Model):
     phone = models.CharField(max_length=100, blank=True, null=True)
     email = models.EmailField(max_length=150)
     address = models.CharField(max_length=150, blank=True, null=True)
-
+    blogpost = models.TextField( null=True)
     def __str__(self):
         return self.user.username
-
+    def short_name( self ):
+        return self.name.split(' ')[ 0 ]
 @receiver(post_save, sender=User)
 def update_profile_signal(sender, instance, created, **kwargs):
     if created:
