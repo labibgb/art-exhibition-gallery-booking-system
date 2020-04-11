@@ -15,115 +15,116 @@
     <div class="card">
       <div class="card-body">
           <div class="tab-pane fade show active text-custom" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
-    <div class="row">
-      {% if gallery %}
-        {% for gallery in gallery %}
-        <div class="container col-md-8 mb-5">
-            <div class="card-header card-title bg-transparent border-dark"><h3 class="card-title text-custom text-center " style="font-weight: 300;font-size: 2.5rem;">{{ gallery.name }}</h3></div>
-            <div class="alert alert-dark" style="font-weight: 300;font-size: 1.25rem;">
-              <h5 class="alert-heading">Location</h5>
-              <p>{{gallery.location}}</p>
-            </div>
-            <div class="alert alert-dark" style="font-weight: 300;font-size: 1.rem;">
-              <h5 class="alert-heading">About {{gallery.name}}</h5>
-              <p class="card-text">{{ gallery.description }}</p>
-            </div>
-            <div class="alert alert-danger" style="font-weight: 350;font-size: 2.25rem;">
-              <h5 class="alert-heading">Per day rent</h5>
-              <p>{{gallery.rent_per_day}}&#x9f3;</p>
-            </div>
-            <div class="btn btn-block">
-              {% if gallery.is_available %}
-              <button type="button" class="btn btn-outline-info btn-lg" data-toggle="modal" data-target="#myModal">Book Now</button>
-              {% include 'partials/booking.html' %}
-              {% else %}
-              <a class="btn btn-outline-danger btn-lg disable">Not Available</a>
+            <div class="row">
+              {% if gallery %}
+                {% for gallery in gallery %}
+                <div class="container col-md-8 mb-5">
+                    <div class="card-header card-title bg-transparent border-dark"><h3 class="card-title text-custom text-center " style="font-weight: 300;font-size: 2.5rem;">{{ gallery.name }}</h3></div>
+                    <div class="alert alert-dark" style="font-weight: 300;font-size: 1.25rem;">
+                      <h5 class="alert-heading">Location</h5>
+                      <p>{{gallery.location}}</p>
+                    </div>
+                    <div class="alert alert-dark" style="font-weight: 300;font-size: 1.rem;">
+                      <h5 class="alert-heading">About {{gallery.name}}</h5>
+                      <p class="card-text">{{ gallery.description }}</p>
+                    </div>
+                    <div class="alert alert-danger" style="font-weight: 350;font-size: 2.25rem;">
+                      <h5 class="alert-heading">Per day rent</h5>
+                      <p>{{gallery.rent_per_day}}&#x9f3;</p>
+                    </div>
+                    <div class="btn btn-block">
+                      {% if gallery.is_available %}
+                      <button type="button" class="btn btn-outline-info btn-lg" data-toggle="modal" data-target="#myModal">Book Now</button>
+                      {% include 'partials/booking.html' %}
+                      {% else %}
+                      <a class="btn btn-outline-danger btn-lg disable">Not Available</a>
+                      {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
               {% endif %}
             </div>
+          </div>
         </div>
-        {% endfor %}
-      {% endif %}
-    </div>
-    </div>
-    </div>
+      </div>
     </div>
         <!-- Grid row -->
 <!-- Grid row -->
 <div class="card my-5">
   <div class="card-body">
       <div class="tab-pane fade show active text-custom" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
-  <div class="row align-items-center ">
-    <div class="card-body card-header border-custom">
-        <h1 class="text-center text-custom m-0" style="font-weight: 300;font-size: 2.5rem;">Recent Event Photos</h1>
+        <div class="row align-items-center ">
+          <div class="card-body card-header border-custom">
+              <h1 class="text-center text-custom m-0" style="font-weight: 300;font-size: 2.5rem;">Recent Event Photos</h1>
+          </div>
+        </div>
+        <div class="gallery my-4">
+          {% if gallery %}
+            {% for gallery in gallery %}
+            <!-- Grid column -->
+            <div class="mb-3 pics">
+              {% if gallery.img_1%}
+              <img class="img-fluid" src="{{gallery.img_1.url}}" alt="Card image cap">
+              {% else %}
+              <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
+              {% endif %}
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="mb-3 pics ">
+              {% if gallery.img_2%}
+              <img class="img-fluid" src="{{gallery.img_2.url}}" alt="Card image cap">
+              {% else %}
+              <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
+              {% endif %}
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="mb-3 pics ">
+              {% if gallery.img_3%}
+              <img class="img-fluid" src="{{gallery.img_3.url}}" alt="Card image cap">
+              {% else %}
+              <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
+              {% endif %}
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="mb-3 pics ">
+              {% if gallery.img_4%}
+              <img class="img-fluid" src="{{gallery.img_4.url}}" alt="Card image cap">
+              {% else %}
+              <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
+              {% endif %}
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="mb-3 pics ">
+              {% if gallery.img_5%}
+              <img class="img-fluid" src="{{gallery.img_5.url}}" alt="Card image cap">
+              {% else %}
+              <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
+              {% endif %}
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="mb-3 pics ">
+              {% if gallery.img_6%}
+              <img class="img-fluid" src="{{gallery.img_6.url}}" alt="Card image cap">
+              {% else %}
+              <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
+              {% endif %}
+            </div>
+            <!-- Grid column -->
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="gallery my-4">
-    {% if gallery %}
-      {% for gallery in gallery %}
-      <!-- Grid column -->
-      <div class="mb-3 pics">
-        {% if gallery.img_1%}
-        <img class="img-fluid" src="{{gallery.img_1.url}}" alt="Card image cap">
-        {% else %}
-        <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
-        {% endif %}
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="mb-3 pics ">
-        {% if gallery.img_2%}
-        <img class="img-fluid" src="{{gallery.img_2.url}}" alt="Card image cap">
-        {% else %}
-        <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
-        {% endif %}
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="mb-3 pics ">
-        {% if gallery.img_3%}
-        <img class="img-fluid" src="{{gallery.img_3.url}}" alt="Card image cap">
-        {% else %}
-        <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
-        {% endif %}
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="mb-3 pics ">
-        {% if gallery.img_4%}
-        <img class="img-fluid" src="{{gallery.img_4.url}}" alt="Card image cap">
-        {% else %}
-        <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
-        {% endif %}
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="mb-3 pics ">
-        {% if gallery.img_5%}
-        <img class="img-fluid" src="{{gallery.img_5.url}}" alt="Card image cap">
-        {% else %}
-        <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
-        {% endif %}
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="mb-3 pics ">
-        {% if gallery.img_6%}
-        <img class="img-fluid" src="{{gallery.img_6.url}}" alt="Card image cap">
-        {% else %}
-        <img class="img-fluid" src="{% static 'img/blank.png' %}" alt="Card image cap">
-        {% endif %}
-      </div>
-      <!-- Grid column -->
-      {% endfor %}
-    {% endif %}
-  </div>
-  </div>
-  </div>
   </div>
 </div>
 {% endblock %}
