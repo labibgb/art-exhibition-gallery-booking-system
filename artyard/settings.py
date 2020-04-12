@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'booking.apps.BookingConfig',
     'user.apps.UserConfig',
     'payment.apps.PaymentConfig',
+    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

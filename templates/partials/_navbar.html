@@ -63,8 +63,14 @@
                     </li>
                 {% endif %} 
                 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                <li
+                    {% if 'blog' in request.path %}
+                        class="nav-item mr-3 active"
+                    {% else %}
+                        class="nav-item mr-3"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'blogs' %}"><i class="fas fa-blog"></i>Blog</a>
                 </li>
             </ul>
         </div>
