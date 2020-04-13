@@ -9,7 +9,7 @@ class Exebition( models.Model ):
     def __str__( self ):
         return self.exebitionType
 class TimeSlot( models.Model ):
-    timest = models.TextField( null=True)
+    timest = models.TimeField( null=True)
     timeed = models.TimeField( null=True)
     
     def __str__( self ):
@@ -22,11 +22,12 @@ class TimeSlot( models.Model ):
 
 class Booking( models.Model ):
 
-    gallery = models.ForeignKey( Gallery , on_delete = models.DO_NOTHING )
-    exebition = models.ForeignKey( Exebition , on_delete = models.DO_NOTHING )
-    TimeSlot = models.ForeignKey( TimeSlot , on_delete = models.DO_NOTHING )
-    userinfo = models.ForeignKey( User , on_delete = models.DO_NOTHING )
-    booking_date = models.DateField( default = datetime.now , blank = True)
-    end_date = models.DateField( default = datetime.now , blank = True )
+    gallery = models.ForeignKey( Gallery , on_delete = models.CASCADE )
+    exebition = models.ForeignKey( Exebition , on_delete = models.CASCADE )
+    TimeSlot = models.ForeignKey( TimeSlot , on_delete = models.CASCADE )
+    userinfo = models.ForeignKey( User , on_delete = models.CASCADE )
+    booking_date = models.DateField( default = datetime.now , blank = True, null = True)
+    end_date = models.DateField( default = datetime.now , blank = True , null= True )
+    
     def __str__( self ):
         return self.gallery.name

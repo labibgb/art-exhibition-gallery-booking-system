@@ -45,8 +45,8 @@ class Services( models.Model ):
 
 class Feedback( models.Model ):
 
-    gallery = models.ForeignKey( Gallery , on_delete=models.DO_NOTHING )
-    userinfo = models.ForeignKey( User , on_delete=models.DO_NOTHING )
+    gallery = models.ForeignKey( Gallery , on_delete=models.CASCADE )
+    userinfo = models.ForeignKey( User , on_delete=models.CASCADE )
     feedback = models.TextField( blank=True )
 
     def __str__( self ):

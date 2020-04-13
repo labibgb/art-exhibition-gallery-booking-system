@@ -30,7 +30,7 @@
                     </div>
                     <div class="alert alert-danger" style="font-weight: 350;font-size: 2.25rem;">
                       <h5 class="alert-heading">Per day rent</h5>
-                      <p>{{gallery.rent_per_day}}&#x9f3;</p>
+                      <p>{{gallery.rent_per_day|intcomma}}&#x9f3;</p>
                     </div>
                     <div class="btn btn-block">
                       {% if gallery.is_available %}

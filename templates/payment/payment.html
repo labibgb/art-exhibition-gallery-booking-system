@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 <div class="container my-5">
     <div class="card">
@@ -21,6 +22,15 @@
                     </div>
                     <div class="col-md-8 col-6">
                         {{booking.gallery.name}}
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-3 col-md-2 col-5">
+                        <label style="font-weight:bold;">Rent Per Day</label>
+                    </div>
+                    <div class="col-md-8 col-6">
+                        {{booking.gallery.rent_per_day|intcomma}}&#x9f3;
                     </div>
                 </div>
                 <hr />
@@ -58,7 +68,7 @@
                         <label style="font-weight:bold;">Booking Date</label>
                     </div>
                     <div class="col-md-8 col-6">
-                        {{booking.booking_date}}
+                        {{booking.booking_date | naturalday}}
                     </div>
                 </div>
                 <hr />
@@ -67,11 +77,27 @@
                         <label style="font-weight:bold;">End Date</label>
                     </div>
                     <div class="col-md-8 col-6">
-                        {{booking.end_date}}
+                        {{booking.end_date| naturalday}}
                     </div>
                 </div>
                 <hr/>
             </div>
+            <form class="form-signin" action="{% url 'booking' %}" method="POST" >
+                <input type="text" name="userid" value="{{user.id}}" hidden>
+                <input type="text" name="galleryid" value="{{gallery.id}}" hidden>
+                <input type="text" name="bookingid" value="{{booking.id}}" hidden>
+                <h6 class="card-title text-center text-custom">Select Additional Services</h6>
+                {% for service in servicelist %}                 
+                <div class="form-check mb-3">
+                    <input type="checkbox" name="services{{service.id}}" class="form-check-input" id="materialChecked{{service.id}}" value="{{service.id}}">
+                    <label class="form-check-label text-custom" for="materialChecked{{service.id}}">{{service.serviceName}}. Price: {{service.price}}&#x9f3;</label>
+                </div>
+                {% endfor %}
+                <button class="btn btn-outline-info btn-block text-uppercase" type="submit" id="pay" name="submit" value="1">Continue</button>
+                <hr class="my-4">
+                <button class="btn btn-outline-danger btn-block text-uppercase" type="submit" name="submit" value="0"> Cancel</button>
+                <hr class="my-4">
+            </form>
         </div>
     </div>
 </div>

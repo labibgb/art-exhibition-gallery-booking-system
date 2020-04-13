@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Exebition, TimeSlot, Booking
 from django.contrib.auth.models import User
-from galleries.models import Gallery
+from galleries.models import Gallery, ServiceList
 def book( request ):
     if request.method=='POST':
+        serviceList = ServiceList.objects.all()
         userid = request.POST['userid']
         galleryid = request.POST['galleryid']
         time = request.POST['time']
@@ -22,7 +23,8 @@ def book( request ):
         makebooking.save()
 
         context = {
-            'booking' : makebooking
+            'booking' : makebooking,
+            'servicelist' : serviceList
         }
         return render( request , 'payment/payment.html' , context )
     
