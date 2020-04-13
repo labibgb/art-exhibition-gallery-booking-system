@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<div class="container py-5">
+
+    <!-- For demo purpose -->
+<div class="row">
+<div class="col-lg-7 mx-auto">
+<div class="card rounded-lg shadow-sm p-5">
+          <!-- Credit card form content -->
+    <div class="tab-content card-body">
+            <h4 class="card-title text-center text-custom">Payment amount {{payment.total_pay}}&#x9f3;</h4>
+            <!-- credit card info-->
+        <div id="nav-tab-card" class="tab-pane fade show active">
+                {% include 'partials/_alert.html' %}
+            <form class="form-signin" action="{% url 'pay' %}" method="POST" >
+                {% csrf_token %}
+                <div class="form-group text-custom">
+                    <input type="text" name="userid" value="{{user.id}}" hidden>
+                    <input type="text" name="paymentid" value="{{payment.id}}" hidden>
+                    <label for="username">Full name (on the card)</label>
+                    <input type="text" name="username" placeholder="name"required class="form-control">
+                </div>
+                <div class="form-group text-custom">
+                  <label for="cardNumber">Card number</label>
+                  <div class="input-group">
+                    <input type="text" name="cardNumber" placeholder="Your card number" class="form-control" required>
+                    <div class="input-group-append">
+                      <span class="input-group-text text-muted">
+                            <i class="fa fa-cc-visa mx-1"></i>
+                            <i class="fa fa-cc-amex mx-1"></i>
+                            <i class="fa fa-cc-mastercard mx-1"></i>
+                        </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <div class="form-group">
+                      <label><span class="hidden-xs text-custom">Expiration</span></label>
+                      <div class="input-group">
+                        <input type="number" placeholder="MM" name="" class="form-control" required>
+                        <input type="number" placeholder="YY" name="" class="form-control" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group mb-4 text-custom">
+                        <label data-toggle="tooltip" title="Three-digits code on the back of your card">CVV
+                            <i class="fa fa-question-circle"></i>
+                        </label>
+                      <input type="text" required class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-outline-success btn-block text-uppercase" type="submit" name="submit">Confirm</button>
+              </form>
+            </div>
+            <!-- End -->
+          </div>
+          <!-- End -->
+  
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -29,7 +29,7 @@
                     <div class="col-sm-3 col-md-2 col-5">
                         <label style="font-weight:bold;">Rent Per Day</label>
                     </div>
-                    <div class="col-md-8 col-6">
+                    <div class="col-md-8 col-6" id="galleryAmount">
                         {{booking.gallery.rent_per_day|intcomma}}&#x9f3;
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                     <div class="col-sm-3 col-md-2 col-5">
                         <label style="font-weight:bold;">Booking Date</label>
                     </div>
-                    <div class="col-md-8 col-6">
+                    <div class="col-md-8 col-6" id="stday">
                         {{booking.booking_date | naturalday}}
                     </div>
                 </div>
@@ -76,24 +76,28 @@
                     <div class="col-sm-3 col-md-2 col-5">
                         <label style="font-weight:bold;">End Date</label>
                     </div>
-                    <div class="col-md-8 col-6">
+                    <div class="col-md-8 col-6" id="edday">
                         {{booking.end_date| naturalday}}
                     </div>
                 </div>
                 <hr/>
             </div>
-            <form class="form-signin" action="{% url 'booking' %}" method="POST" >
+            <form class="form-signin" action="{% url 'payment' %}" method="POST" >
+                {% csrf_token %}
                 <input type="text" name="userid" value="{{user.id}}" hidden>
-                <input type="text" name="galleryid" value="{{gallery.id}}" hidden>
+                <input type="text" name="galleryid" value="{{booking.gallery.id}}" hidden>
                 <input type="text" name="bookingid" value="{{booking.id}}" hidden>
-                <h6 class="card-title text-center text-custom">Select Additional Services</h6>
-                {% for service in servicelist %}                 
+                <input type="date" name="startDate" value="{{booking.booking_date}}" hidden>
+                <input type="date" name="endDate" value="{{booking.end_date}}" hidden>
+                <input type="text" name="totalpay" id="cost" hidden>
+                <h4 class="card-title text-center text-custom">Select Additional Services</h4>
+                {% for key,service in servicelist.items %}                 
                 <div class="form-check mb-3">
-                    <input type="checkbox" name="services{{service.id}}" class="form-check-input" id="materialChecked{{service.id}}" value="{{service.id}}">
-                    <label class="form-check-label text-custom" for="materialChecked{{service.id}}">{{service.serviceName}}. Price: {{service.price}}&#x9f3;</label>
+                    <input type="checkbox" name="services" class="form-check-input" id="materialChecked{{key}}" value="{{key}}">
+                    <label class="form-check-label text-custom" id="price{{key}}" for="materialChecked{{key}}"><b>{{service}}</b></label>
                 </div>
                 {% endfor %}
-                <button class="btn btn-outline-info btn-block text-uppercase" type="submit" id="pay" name="submit" value="1">Continue</button>
+                <button class="btn btn-outline-info btn-block text-uppercase" type="submit" id="pay" name="submit" value="1"><b>Continue</b></button>
                 <hr class="my-4">
                 <button class="btn btn-outline-danger btn-block text-uppercase" type="submit" name="submit" value="0"> Cancel</button>
                 <hr class="my-4">

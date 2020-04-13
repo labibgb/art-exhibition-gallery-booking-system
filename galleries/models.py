@@ -39,7 +39,7 @@ class Services( models.Model ):
 
     servicelist = models.ForeignKey( ServiceList , on_delete=models.DO_NOTHING )
     gallery = models.ForeignKey( Gallery , on_delete=models.DO_NOTHING )
-
+    
     def __str__( self ):
         return self.gallery.name
 
