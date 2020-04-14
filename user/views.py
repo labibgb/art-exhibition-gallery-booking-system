@@ -3,6 +3,7 @@ from django.contrib import messages , auth
 from .forms import RegisterForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from payment.models import Payment
 def Login( request ):
 
     if request.method == 'POST':
@@ -10,8 +11,8 @@ def Login( request ):
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
-            login(request, user)
-            messages.success( request , "Login successfull")
+            login(request, user )
+            messages.success( request , "Login successfull" )
             return redirect('/')
         else:
             messages.error( request , "Username or password dosen't match.")
@@ -33,7 +34,7 @@ def register( request ):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
-            login(request, user)
+            login(request, user )
             messages.success( request , "Registration successfull")
             return redirect('profile')
         else:
@@ -46,9 +47,12 @@ def register( request ):
     
 
 def profile( request ):
-    return render( request , 'user/profile.html')
+    
+    payment = Payment.objects.all()
+    return render( request , 'user/profile.html', {'payment':payment})
 
 def logout( request ):
     if request.method == 'POST':
         auth.logout( request )
         return redirect('/')
+    return redirect('/')

@@ -1,19 +1,21 @@
 setTimeout( function(){
     $("#message").fadeOut('slow');
 }, 3000);
-$("#custom-checkbox").on('click', function() {
+$(".custom-control-input").on('click', function() {
     // in the handler, 'this' refers to the box clicked on
     var $box = $(this);
-    console.log( $box )
     if ($box.is(":checked")) {
+      console.log("click");
       // the name of the box is retrieved using the .attr() method
       // as it is assumed and expected to be immutable
-      var group = "#custom-checkbox[name='" + $box.attr("name") + "']";
+      var group = ".custom-control-input[name='" + $box.attr("name") + "']";
       // the checked state of the group/box on the other hand will change
       // and the current value is retrieved using .prop() method
+      console.log( group );
       $(group).prop("checked", false);
       $box.prop("checked", true);
     } else {
+      console.log("click1");
       $box.prop("checked", false);
     }
 });
@@ -68,34 +70,34 @@ console.log( coneedday );
 
 var day = coneedday[ 2 ]-conestday[ 2 ]+1;
 if( day < 0 ){
-  day += month[ conestday[ 1 ] ];
-  conestday[ 1 ] = conestday[ 1 ] +1;
+    day += month[ conestday[ 1 ] ];
+    conestday[ 1 ] = conestday[ 1 ] +1;
 }
-var mn = coneedday[ 1 ]-conestday[ 1 ];
-if( mn < 0 )
-{
-  mn += 12;
-  conestday[ 0 ] = conestday[ 0 ] + 1;
-}
-year = coneedday[ 0 ]-conestday[ 0 ];
-year *= 365;
-for( var i = conestday[ i ]; i <= coneedday[ 1 ]; i++  )
-{
-  day += month[ i ];
-}
-day += year;
-if( day < 0 ){
-  day = 1;
-}
+  var mn = coneedday[ 1 ]-conestday[ 1 ];
+  if( mn < 0 )
+  {
+    mn += 12;
+    conestday[ 0 ] = conestday[ 0 ] + 1;
+  }
+  year = coneedday[ 0 ]-conestday[ 0 ];
+  year *= 365;
+  for( var i = conestday[ i ]; i <= coneedday[ 1 ]; i++  )
+  {
+    day += month[ i ];
+  }
+  day += year;
+  if( day < 0 ){
+    day = 1;
+  }
 
-var val = document.querySelector("#galleryAmount").textContent;
-var total = 0;
-total = intcon( val );
-total = total * day;
+  var val = document.querySelector("#galleryAmount").textContent;
+  var total = 0;
+  total = intcon( val );
+  total = total * day;
 
-document.querySelector("#pay").textContent = 'Pay '+ total +'৳';
-var cost = document.querySelector("#cost");
-cost.setAttribute('value', total);
-$(function() {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+  document.querySelector("#pay").textContent = 'Pay '+ total +'৳';
+  var cost = document.querySelector("#cost");
+  cost.setAttribute('value', total);
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })

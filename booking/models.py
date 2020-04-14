@@ -2,7 +2,8 @@ from django.db import models
 from datetime import datetime
 from galleries.models import Gallery
 from django.contrib.auth.models import User
-
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 class Exebition( models.Model ):
     exebitionType = models.CharField( max_length=100, blank=True )
 

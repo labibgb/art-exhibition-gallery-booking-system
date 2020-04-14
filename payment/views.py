@@ -19,7 +19,7 @@ def payment( request ):
         if submit == "0":
             Booking.objects.get(pk=bid).delete()
             return redirect('galleries')
-        else:
+        elif submit == "1":
             payment = Payment( total_pay= total )
             booking = Booking.objects.get(pk=bid )
             payment.booking = booking
@@ -29,10 +29,13 @@ def payment( request ):
             payment.user= user
             payment.save()
             return render( request , 'payment/makepayment.html', { 'payment' : payment } )
+        else:
+
+            payment = Payment.objects.filter(booking=Booking.objects.get(pk=bid))[0]
+            return render( request , 'payment/makepayment.html', { 'payment' : payment } )
     return redirect('/')
 def makePayment( request ):
 
-    print("come")
     if request.method == 'POST':
         paymentid = request.POST['paymentid']
         pay = Payment.objects.get(pk=paymentid)
