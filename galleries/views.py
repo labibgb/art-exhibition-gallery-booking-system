@@ -18,3 +18,14 @@ def gallery( request , gallery_id):
         'gallery' : gallery
     }
     return render( request , 'galleries/gallery.html' , context)
+def search( request ):
+    gallery = Gallery.objects.order_by('name')
+    name = request.GET['search']
+    print( name )
+    if name:
+        gallery = gallery.filter(name__icontains=name)
+    print( gallery )
+    context = {
+        'galleries' : gallery
+    }
+    return render( request , 'galleries/search.html' , context)
