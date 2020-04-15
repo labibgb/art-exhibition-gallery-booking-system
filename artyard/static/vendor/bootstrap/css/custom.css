@@ -140,9 +140,9 @@ body {
   }
 
   
-  .btn-google {
-    color: white;
-    background-color: #ea4335;
+  .btn-custom {
+    color: #986f49db;
+    background-color: #c7742896;
   }
   
   .btn-facebook {
