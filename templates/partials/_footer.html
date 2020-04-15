@@ -1,6 +1,26 @@
+{% load static %}
 <footer class="py-5 bg-custom">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy;2020</p>
+        <div class="row">
+            <div class="col-lg-6 max-auto">
+                <p class="m-0 text-center text-white">Copyright &copy;2020</p>
+            </div>
+            <div class="col-lg-6 max-auto">
+                <form style="color: azure;" action="{% url 'feedback' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Email address</label>
+                      <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Message</label>
+                      <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit" style="color:  white; background-color: #754519 !important; border-color:#c16c1e"><i class="far fa-paper-plane"></i> Send</button>
+                  </form>
+            </div>
+        </div>
+        
     </div>
     <!-- /.container -->
 </footer>
