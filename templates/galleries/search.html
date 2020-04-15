@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+{% load humanize %}
+{% block content %}
+<div class="container my-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'galleries' %}">Galleries</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Search result</li>
+        </ol>
+    </nav>
+    <div class="row">
+      {% if galleries %}
+        {% for gallery in galleries %}
+        <div class="card-group col-md-4 mb-5">
+          <div class="card h-100" >
+            <div class="card-header card-title bg-transparent border-custom"><h3 class="card-title text-custom text-center " style="font-weight: 300;font-size: 1.5rem;">{{ gallery.name }}</h3></div>
+            <div class="card-body" >
+              <h5 class="card-title text-custom" style="font-weight: 300;font-size: 1.5rem;">{{ gallery.location.location }}</h5>
+              <p class="card-text text-custom" style="font-weight: 300;font-size: 1.0rem;">{{ gallery.shortdesc }}</p>
+            </div>
+            <div class="card-footer" >
+                <a href="{% url 'gallery' gallery.id %}" class="btn btn-outline-info btn-sm mr-2">More Info</a>
+                {% if gallery.is_available %}
+                <a href="{% url 'gallery' gallery.id %}" class="btn btn-outline-success btn-sm">Book Now</a>
+                {% else %}
+                <a class="btn btn-outline-danger btn-sm disable">Not Available</a>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-md-12 mb-5">
+          <h1 class="text-center text-danger m-0 my-5">No Galleries Available</h1>
+        </div>
+      {% endif %}
+  
+    </div>
+</div>
+{% endblock %}
